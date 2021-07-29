@@ -14,6 +14,10 @@ class AddOfficineAction extends OfficineAction
         $data = $this->request->getParsedBody();
         $officine = new Officine;
         $officine->name = $data["name"];
+        $officine->employee_amount = $data["employee_amount"];
+        $officine->location_lat = $data["location_lat"];
+        $officine->location_lng = $data["location_lng"];
+        $officine->opening_time = $data["opening_time"];
         $officine->save();
         return $this->respondWithData($officine);
     }

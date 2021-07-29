@@ -13,11 +13,11 @@ class NewMedicAction extends MedicAction
     {
         $data = $this->request->getParsedBody();
         $medic = new Medic;
-        $medic->name_medic = $data["name_medic"];
+        $medic->name = $data["name"];
         $medic->prix = $data["prix"];
         $medic->description = $data["description"];
-        $medic->id_cat_fk = $data["id_cat"];
-        $medic->id_image_fk = $data["id_img"];
+        $medic->category_id = $data["category_id"];
+        $medic->image_id = $data["image_id"];
         $medic->save();
         return $this->respondWithData($medic);
     }

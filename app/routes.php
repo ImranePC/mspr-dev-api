@@ -1,7 +1,12 @@
 <?php
 declare(strict_types=1);
 
+use App\Application\Models\User;
+use App\Application\Actions\User\AddUserAction;
+use App\Application\Actions\User\GetUserAction;
 use App\Application\Actions\User\ListUsersAction;
+use App\Application\Actions\User\DeleteUserAction;
+use App\Application\Actions\User\UpdateUserAction;
 use App\Application\Models\Order;
 use App\Application\Actions\Order\AddOrderAction;
 use App\Application\Actions\Order\GetOrderAction;
@@ -70,4 +75,14 @@ return function (App $app) {
         $group->put('/{id}', UpdateOrderAction::class);
         $group->delete('/{id}', DeleteOrderAction::class);
     });
+
+    $app->group('/user', function (Group $group) {
+        $group->get('s', ListUsersAction::class);
+        $group->post('', AddUserAction::class);
+        $group->post('/auth', \App\Application\Actions\User\UserAuthAction::class);
+        $group->get('/{id}', GetUserAction::class);
+        $group->put('/{id}', UpdateUserAction::class);
+        $group->delete('/{id}', DeleteUserAction::class);
+    });
+
 };

@@ -13,7 +13,9 @@ class AddStockAction extends StockAction
     {
         $data = $this->request->getParsedBody();
         $stock = new Stock;
-        $stock->name = $data["name"];
+        $stock->amount = $data["amount"];
+        $stock->medic_id = $data["medic_id"];
+        $stock->officine_id = $data["officine_id"];
         $stock->save();
         return $this->respondWithData($stock);
     }
