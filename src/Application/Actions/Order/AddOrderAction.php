@@ -14,7 +14,6 @@ class AddOrderAction extends OrderAction
         $data = $this->request->getParsedBody();
         $order = new Order;
         $order->amount = $data["amount"];
-        $order->order_at = $data["order_at"];
         $order->medic_id = $data["medic_id"];
         $order->officine_id = $data["officine_id"];
         $order->save();
