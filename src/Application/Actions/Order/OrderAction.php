@@ -14,7 +14,7 @@ abstract class OrderAction extends Action
     * @var Order
     */
     protected $order;
-    
+
     /**
     * @param LoggerInterface $logger
     * @param Order  $order
@@ -24,10 +24,10 @@ abstract class OrderAction extends Action
         parent::__construct($logger);
         $this->order = $order;
     }
-    
+
     protected function parseBody() {
         // parsing from key=value&key2=value2 to [key => value, key2 => value2]
-        $data;
+        $data = "";
         $raw = $this->request->getBody()->getContents();
         if (empty($raw))
             return $this->request->getParsedBody();
