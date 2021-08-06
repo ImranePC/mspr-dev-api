@@ -16,12 +16,12 @@ class UserAuthAction extends UserAction
             $result["connection"] = true;
             return $this->respondWithData($result);
         } else {
-            unset($result["user"]);
             if (!isset($result["user"])) {
                 $result["error"] = "FALSE_USERNAME";
             } else {
                 $result["error"] = "FALSE_PASSWORD";
             }
+            unset($result["user"]);
             $result["connection"] = false;
             return $this->respondWithData($result);
         }
