@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Application\Actions\User;
-
 
 use Psr\Http\Message\ResponseInterface as Response;
 
@@ -12,17 +10,24 @@ class UserAuthAction extends UserAction
     {
         $data = $this->parseBody();
         $result["user"] = $this->user->select()->where('username', $data['username'])->first();
-        if (password_verify($data['password'], $result["user"]["password"])) {
-            $result["connection"] = true;
-            return $this->respondWithData($result);
-        } else {
-            if (!isset($result["user"])) {
-                $result["error"] = "FALSE_USERNAME";
+
+        if ($result["user"] != null) {
+            if (password_verify($data['password'], $result["user"]["password"])) {
+                $result["connection"] = true;
+
+                return $this->respondWithData($result);
             } else {
                 $result["error"] = "FALSE_PASSWORD";
+                $result["connection"] = false;
+                unset($result["user"]);
+
+                return $this->respondWithData($result);
             }
-            unset($result["user"]);
+        } else {
+            $result["error"] = "FALSE_USERNAME";
             $result["connection"] = false;
+            unset($result["user"]);
+
             return $this->respondWithData($result);
         }
     }
