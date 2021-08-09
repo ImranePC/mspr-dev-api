@@ -12,7 +12,7 @@ class GetOfficineOrdersAction extends OfficineAction
     {
         $orders = $this->officine->find((int) $this->resolveArg('id'))->orders;
         foreach ($orders as $order) {
-            $order->officine = $order->find($order->id)->officine;
+            //$order->officine = $order->find($order->id)->officine;
             $order->medic = $order->find($order->id)->medic;
         }
         return $this->respondWithData($orders);
