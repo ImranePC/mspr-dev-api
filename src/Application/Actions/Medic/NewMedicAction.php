@@ -15,6 +15,7 @@ class NewMedicAction extends MedicAction
         $medic = new Medic;
         $medic->name = $data["name"];
         $medic->prix = $data["prix"];
+        $medic->discount = $data["discount"];
         $medic->description = $data["description"];
         $medic->category_id = $data["category_id"];
         $medic->image_id = $data["image_id"];
