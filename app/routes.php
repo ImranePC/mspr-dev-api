@@ -2,6 +2,12 @@
 declare(strict_types=1);
 
 use App\Application\Models\User;
+use App\Application\Models\Image;
+use App\Application\Actions\Image\AddImageAction;
+use App\Application\Actions\Image\GetImageAction;
+use App\Application\Actions\Image\ListImagesAction;
+use App\Application\Actions\Image\DeleteImageAction;
+use App\Application\Actions\Image\UpdateImageAction;
 use App\Application\Actions\User\AddUserAction;
 use App\Application\Actions\User\GetUserAction;
 use App\Application\Actions\User\ListUsersAction;
@@ -85,4 +91,7 @@ return function (App $app) {
         $group->delete('/{id}', DeleteUserAction::class);
     });
 
+    $app->group('/image', function (Group $group) {
+        $group->get('/{id}', GetImageAction::class);
+    });
 };
